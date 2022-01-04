@@ -117,6 +117,9 @@
   const board3 = new Entity('board3')
   engine.addEntity(board3)
   board3.setParent(_scene)
+  gltfShape.withCollisions = true
+  gltfShape.isPointerBlocker = true
+  gltfShape.visible = true
   board3.addComponentOrReplace(gltfShape)
   const transform6 = new Transform({
     position: new Vector3(4, .15, 13),
@@ -131,6 +134,9 @@
   const board2 = new Entity('board2')
   engine.addEntity(board2)
   board2.setParent(_scene)
+  gltfShape.withCollisions = true
+  gltfShape.isPointerBlocker = true
+  gltfShape.visible = true
   board2.addComponentOrReplace(gltfShape)
   const transform5 = new Transform({
     position: new Vector3(13.5, .15, 6.5),
@@ -139,47 +145,22 @@
   })
   board2.addComponentOrReplace(transform5)
 
+  //BUILD PIECES
 
-  const boardMaterial = new BasicMaterial()
-  const boardTexture = new Texture("materials/board.png")
-  boardMaterial.texture = boardTexture
+  //SET 1
 
-  const myPlane = new Entity()
+  const wkGltfShape = new GLTFShape("models/Chess_Figures/White_Pieces/White_King.glb")
 
-  const transform1 = new Transform({
-    position: new Vector3(5, 0, 3.5),
+  const wk1 = new Entity('wk1')
+  engine.addEntity(wk1)
+  wk1.setParent(board1)
+  gltfShape.withCollisions = true
+  gltfShape.isPointerBlocker = true
+  gltfShape.visible = true
+  wk1.addComponentOrReplace(wkGltfShape)
+  const transform5 = new Transform({
+    position: new Vector3(0, 10, 0),
     rotation: new Quaternion(0, 0, 0, 1),
     scale: new Vector3(1, 1, 1)
   })
-  myPlane.addComponentOrReplace(transform1)
-
-  engine.addEntity(myPlane)
-  myPlane.addComponent(boardMaterial)
-
-  //Create shape component
-  const plane = new PlaneShape()
-
-  // map the texture to each of the four corners of the plane
-  plane.uvs = [
-    0,
-    0.75,
-    0.25,
-    0.75,
-    0.25,
-    1,
-    0,
-    1,
-    0,
-    0.75,
-    0.25,
-    0.75,
-    0.25,
-    1,
-    0,
-    1,
-  ]
-
-  board1.addComponent(plane)
-
-  //Assign the material to the entity
-  board1.addComponentOrReplace(boardMaterial)
+  wk1.addComponentOrReplace(transform5)
