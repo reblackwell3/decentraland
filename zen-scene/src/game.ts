@@ -99,14 +99,20 @@
 
 //BUILD BOARDS
 
+  const blackWhiteBoardShape = new GLTFShape("models/black-white-board.glb")
+  blackWhiteBoardShape.withCollisions = true
+  blackWhiteBoardShape.isPointerBlocker = true
+  blackWhiteBoardShape.visible = true
+
+  const brownBlackBoardShape = new GLTFShape("models/brown-black-board.glb")
+  brownBlackBoardShape.withCollisions = true
+  brownBlackBoardShape.isPointerBlocker = true
+  brownBlackBoardShape.visible = true
+
   const board1 = new Entity('board1')
   engine.addEntity(board1)
   board1.setParent(_scene)
-  const gltfShape = new GLTFShape("models/low-poly-board.glb")
-  gltfShape.withCollisions = true
-  gltfShape.isPointerBlocker = true
-  gltfShape.visible = true
-  board1.addComponentOrReplace(gltfShape)
+  board1.addComponentOrReplace(blackWhiteBoardShape)
   const transform2 = new Transform({
     position: new Vector3(3, .15, 5),
     rotation: Quaternion.Euler(0, 90, 0),
@@ -117,10 +123,7 @@
   const board3 = new Entity('board3')
   engine.addEntity(board3)
   board3.setParent(_scene)
-  gltfShape.withCollisions = true
-  gltfShape.isPointerBlocker = true
-  gltfShape.visible = true
-  board3.addComponentOrReplace(gltfShape)
+  board3.addComponentOrReplace(blackWhiteBoardShape)
   const transform6 = new Transform({
     position: new Vector3(4, .15, 13),
     rotation: Quaternion.Euler(0, 90, 0),
@@ -134,14 +137,11 @@
   const board2 = new Entity('board2')
   engine.addEntity(board2)
   board2.setParent(_scene)
-  gltfShape.withCollisions = true
-  gltfShape.isPointerBlocker = true
-  gltfShape.visible = true
-  board2.addComponentOrReplace(gltfShape)
+  board2.addComponentOrReplace(brownBlackBoardShape)
   const transform5 = new Transform({
     position: new Vector3(13.5, .15, 6.5),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(.25, .25, .25)
+    scale: new Vector3(.5, .5, .5)
   })
   board2.addComponentOrReplace(transform5)
 
@@ -149,18 +149,18 @@
 
   //SET 1
 
-  const wkGltfShape = new GLTFShape("models/Chess_Figures/White_Pieces/White_King.glb")
+  const wkGltfShape = new GLTFShape("models/white/king.glb")
+  wkGltfShape.withCollisions = true
+  wkGltfShape.isPointerBlocker = true
+  wkGltfShape.visible = true
 
   const wk1 = new Entity('wk1')
   engine.addEntity(wk1)
-  wk1.setParent(board1)
-  gltfShape.withCollisions = true
-  gltfShape.isPointerBlocker = true
-  gltfShape.visible = true
+  wk1.setParent(_scene)
   wk1.addComponentOrReplace(wkGltfShape)
-  const transform5 = new Transform({
-    position: new Vector3(0, 10, 0),
+  const transformWk = new Transform({
+    position: new Vector3(5, 0, 5),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1)
+    scale: new Vector3(1.1, 1.1, 1.1)
   })
-  wk1.addComponentOrReplace(transform5)
+  wk1.addComponentOrReplace(transformWk)
