@@ -22,7 +22,7 @@ _scene.addComponentOrReplace(normalTransform)
 const input = Input.instance
 
 input.subscribe("BUTTON_DOWN", ActionButton.PRIMARY, true, (event) => {
-    if (Player.holdingPiece && event.hit) {
+    if (Player.selectedPieceId && event.hit) {
         for (let i = 0; i < chessPieces.length; i++) {
             if (chessPieces[i].getParent()?.alive) { chessPieces[i].putDown(i, event.hit.hitPoint) }
         }

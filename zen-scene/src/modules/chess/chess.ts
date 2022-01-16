@@ -24,11 +24,11 @@ type ChessPieceState = {
     position: Vector3
 }
 
-sceneMessageBus.on("ChessPiecePickedUp", (state: ChessPieceState) => {
+sceneMessageBus.on("ChessPieceSelected", (state: ChessPieceState) => {
     chessPieces[state.id].getComponent(Transform).position.set(state.position.x, state.position.y, state.position.z)
 })
 
-sceneMessageBus.on("ChessPiecePutDown", (state: ChessPieceState) => {
+sceneMessageBus.on("ChessPieceMoved", (state: ChessPieceState) => {
     chessPieces[state.id].getComponent(Transform).rotation.set(0, 0, 0, 1)
     chessPieces[state.id].getComponent(Transform).position.set(state.position.x, state.position.y, state.position.z)
 })

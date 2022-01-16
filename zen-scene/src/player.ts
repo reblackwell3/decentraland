@@ -1,3 +1,3 @@
 export class Player {
-    static holdingPiece = false
+    static selectedPieceId = null
 }
