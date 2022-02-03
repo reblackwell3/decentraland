@@ -2,12 +2,16 @@
   "compilerOptions": {
     "outFile": "./bin/game.js",
     "allowJs": true,
+    "moduleResolution": "node",
     "paths": {
       "@dcl/ecs-scene-utils": [
         "node_modules/@dcl/ecs-scene-utils/dist/index.d.ts"
       ],
       "@dcl/ui-scene-utils": [
         "node_modules/@dcl/ui-scene-utils/dist/index.d.ts"
+      ],
+      "chess.js": [
+        "node_modules/chess.js/chess.js"
       ]
     },
     "baseUrl": ".",

@@ -1,5 +1,5 @@
 import {Player} from "./player";
-import {chessPieces} from "./modules/chess/chess";
+import {chessPieces} from "./modules/chess/engine/chess-engine";
 
 export const sceneMessageBus = new MessageBus()
 

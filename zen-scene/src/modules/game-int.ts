@@ -1,6 +1,6 @@
 // DETAIL INTERFACE
 
-interface GameDetail {
+export interface GameDetail {
     apply()
 }
 

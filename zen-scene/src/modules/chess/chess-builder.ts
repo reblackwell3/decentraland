@@ -1,10 +1,13 @@
 import {BoardColor, ChessBoard} from "./board/board";
 import {ChessPiece, ChessPieceShape, PieceRank, PieceColor} from "./piece/piece";
+import {GameBuilder} from "../game-int";
 
-export class ChessBuilder {
+export class ChessBuilder extends GameBuilder {
     static pieces: ChessPiece[]
     static boards: ChessBoard[]
-    constructor() {}
+    constructor() {
+        super()
+    }
 }
 // PIECES
 
@@ -39,22 +42,26 @@ function createChessBoard(id: number, color: BoardColor, transform: Transform) {
     return board
 }
 
-const board1 = createChessBoard(1, BoardColor.BLACK, new Transform({
+const BOARD_1_STARTING_TRANSFORM = new Transform({
     position: new Vector3(3, .15, 5),
     rotation: Quaternion.Euler(0, 90, 0),
     scale: new Vector3(.25, .25, .25)
-}));
+});
+const board1 = createChessBoard(1, BoardColor.BLACK, BOARD_1_STARTING_TRANSFORM);
 
-const board2 = createChessBoard(2, BoardColor.BLACK, new Transform({
+const BOARD_2_STARTING_TRANSFORM = new Transform({
     position: new Vector3(4, .15, 13),
     rotation: Quaternion.Euler(0, 90, 0),
     scale: new Vector3(.25, .25, .25)
-}))
-const board3 = createChessBoard(3, BoardColor.BROWN, new Transform({
+});
+const board2 = createChessBoard(2, BoardColor.BLACK, BOARD_2_STARTING_TRANSFORM)
+
+const BOARD_3_STARTING_TRANSFORM = new Transform({
     position: new Vector3(13.5, .15, 6.5),
     rotation: new Quaternion(0, 0, 0, 1),
     scale: new Vector3(.5, .5, .5)
-}))
+});
+const board3 = createChessBoard(3, BoardColor.BROWN, BOARD_3_STARTING_TRANSFORM)
 
 ChessBuilder.boards.push(
     board1,
