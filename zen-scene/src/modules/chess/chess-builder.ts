@@ -1,14 +1,58 @@
 import {BoardColor, ChessBoard} from "./board/board";
 import {ChessPiece, ChessPieceShape, PieceRank, PieceColor} from "./piece/piece";
-import {GameBuilder} from "../game-int";
+import {GameBuilder, GameDetail, GameObject, GameObjectDetails} from "../game-int";
+import {Piece, PieceActions, PieceAnimations, PieceAppearance} from "./piece";
+import {Board} from "./board";
 
 export class ChessBuilder extends GameBuilder {
     static pieces: ChessPiece[]
     static boards: ChessBoard[]
+
     constructor() {
         super()
     }
 }
+
+//There will be a builder that will build this
+export class GameObjectBuilder {
+    set state(value: any) {
+        this._state = value;
+    }
+
+    set actions(value: GameDetail) {
+        this._actions = value;
+    }
+
+    set animations(value: GameDetail) {
+        this._animations = value;
+    }
+
+    set appearance(value: GameDetail) {
+        this._appearance = value;
+    }
+
+    private _appearance: GameDetail
+    private _animations: GameDetail
+    private _actions: GameDetail
+    private _state: any
+
+    private _objectName: String
+
+    build(): GameObject {
+        let details: GameObjectDetails = {
+            actions: this._actions,
+            animations: this._animations,
+            appearance: this._appearance,
+            state: this._state
+        }
+        if (this._objectName == "PIECE") {
+            return new Piece(details)
+        } else if (this._objectName == "BOARD") {
+            return new Board(details)
+        }
+    }
+}
+
 // PIECES
 
 const ChessPiece1 = new ChessPiece(0, new ChessPieceShape(PieceRank.PAWN, PieceColor.WHITE), new Vector3(8.3, 1.25, 8))

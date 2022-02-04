@@ -28,5 +28,3 @@ export type PieceState = {
 export class Piece extends GameObject {
 
 }
-
-//There will be a builder that will build this

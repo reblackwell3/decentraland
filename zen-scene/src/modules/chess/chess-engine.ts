@@ -10,6 +10,7 @@ export class ChessEngine extends GameEngine {
     }
 
     //engine will return null if move fails
+    //null converted to false
     move(move: String): boolean {
         return this.chess.move(move) != null
     }
