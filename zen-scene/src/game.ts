@@ -1,5 +1,5 @@
 import {Player} from "./player";
-import {chessPieces} from "./modules/chess/engine/chess-engine";
+// import {chessPieces} from "./modules/chess/board/chess-engine";
 
 export const sceneMessageBus = new MessageBus()
 
@@ -21,10 +21,10 @@ _scene.addComponentOrReplace(normalTransform)
 // Instance the input object
 const input = Input.instance
 
-input.subscribe("BUTTON_DOWN", ActionButton.PRIMARY, true, (event) => {
-    if (Player.selectedPieceId && event.hit) {
-        for (let i = 0; i < chessPieces.length; i++) {
-            if (chessPieces[i].getParent()?.alive) { chessPieces[i].putDown(i, event.hit.hitPoint) }
-        }
-    }
-})
+// input.subscribe("BUTTON_DOWN", ActionButton.PRIMARY, true, (event) => {
+//     if (Player.selectedPieceId && event.hit) {
+//         for (let i = 0; i < chessPieces.length; i++) {
+//             if (chessPieces[i].getParent()?.alive) { chessPieces[i].putDown(i, event.hit.hitPoint) }
+//         }
+//     }
+// })
