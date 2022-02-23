@@ -14,17 +14,3 @@ const normalTransform = new Transform({
 const _scene = new Entity('_scene')
 engine.addEntity(_scene)
 _scene.addComponentOrReplace(normalTransform)
-
-
-// INPUT
-
-// Instance the input object
-const input = Input.instance
-
-// input.subscribe("BUTTON_DOWN", ActionButton.PRIMARY, true, (event) => {
-//     if (Player.selectedPieceId && event.hit) {
-//         for (let i = 0; i < chessPieces.length; i++) {
-//             if (chessPieces[i].getParent()?.alive) { chessPieces[i].putDown(i, event.hit.hitPoint) }
-//         }
-//     }
-// })
