@@ -1,24 +1,87 @@
-import {Square} from "./model";
+import {Piece, PieceValue, Square} from "./elements";
+import {Entity} from "decentraland-ecs";
 
-export class BoardView {
+export class BoardView extends Entity {
 
-    squares: Square[]
+    squareViews: SquareView[]
+    pieceViews: PieceView[]
 
-    getSquare(targetSquare: Square): Square {
+    constructor(squares:Square[], pieces:Piece[]) {
+        super();
+        for (let square of squares) {
+            this.squareViews.push(new SquareView(square))
+        }
+        for (let piece of pieces) {
+            this.pieceViews.push(new PieceView(piece))
+        }
+    }
+
+    getSquareView(targetSquare: Square): SquareView {
         // can optimize later with dictionary or array of arrays lookup
-        for (let square of this.squares) {
-            if (square.getText() == targetSquare.getText()) {
-                return square
+        for (let squareView of this.squareViews) {
+            if (squareView.square.getText() == targetSquare.getText()) {
+                return squareView
+            }
+        }
+    }
+
+    getPieceView(targetPiece: Piece): PieceView {
+        // can optimize later with dictionary or array of arrays lookup
+        for (let pieceView of this.pieceViews) {
+            if (pieceView.piece.value == targetPiece.value && pieceView.piece.startingSquare == pieceView.piece.startingSquare) {
+                return pieceView
             }
         }
     }
 
 }
 
-export const blueMaterial = new Material()
-blueMaterial.albedoColor = Color3.Blue()
-blueMaterial.metallic = 0.9
-blueMaterial.roughness = 0.1
+export class PieceView extends Entity {
+    get piece(): Piece {
+        return this._piece;
+    }
+    private _piece:Piece
+    constructor(piece:Piece) {
+        super()
+        this._piece = piece
+    }
+
+    // todo - create the real movement later
+    moveAnimation(toSquare: Square) {
+        let transform = this.getComponent(Transform)
+        let distance = Vector3.Forward().scale(0.1)
+        transform.translate(distance)
+    }
+}
+
+export class SquareView extends Entity {
+    get piece(): Piece {
+        return this._piece;
+    }
+
+    set piece(value: Piece) {
+        this._piece = value;
+    }
+    get square(): Square {
+        return this._square;
+    }
+    private _square:Square
+    private _piece:Piece
+    constructor(square:Square) {
+        super();
+        this._square = square
+    }
+
+    public highlight() {
+        // transform color to translucent white
+        const blueMaterial = new Material()
+        blueMaterial.albedoColor = Color3.Blue()
+        blueMaterial.metallic = 0.9
+        blueMaterial.roughness = 0.1
+
+        this.addComponent(blueMaterial)
+    }
+}
 
 export class View {
 
@@ -30,26 +93,28 @@ export class View {
 
     viewSelect(fromSquare: Square, toSquares: Square[]) {
         for (let square of toSquares) {
-            this.highlight(square);
+            this.boardView.getSquareView(square).highlight();
         }
     }
 
-    private highlight(square: Square) {
-        // transform color to translucent white
-        this.boardView.getSquare(square).addComponent(blueMaterial)
-    }
-
     viewMove(fromSquare: Square, toSquare: Square) {
-        let fromPiece = this.boardView.getSquare(fromSquare).piece;
-        this.boardView.getSquare(toSquare).piece = fromPiece
-        this.boardView.getSquare(fromSquare).piece = null;
+        let fromSquareView = this.boardView.getSquareView(fromSquare);
+        let toSquareView = this.boardView.getSquareView(toSquare);
+        let fromPiece:Piece = fromSquareView.piece;
+
+        this.boardView.getPieceView(fromPiece).moveAnimation(toSquare)
+
+        fromSquareView.piece = null
+        toSquareView.piece = fromPiece
+        // can just remove entity and create new entity - engine
     }
 
     viewNoMoves(fromSquare: Square) {
-        // do this later
+        // todo - do this later
     }
 
     viewCancelSelect() {
-        // do this later
+        // todo - do this later
     }
+
 }

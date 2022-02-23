@@ -1,54 +1,5 @@
 import {Chess} from "chess.js";
-
-//======== PIECE ==========
-
-export enum Piece {
-    PAWN, ROOK, KNIGHT, BISHOP, KING, QUEEN
-}
-
-// ====== SQUARE =======
-export enum Rank {
-    a="A", b="B", c="C", d="D", e="E", f="F", g="G", h="H"
-}
-
-export enum File {
-    ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT
-}
-
-export class Square extends Entity {
-    get piece(): Piece {
-        return this._piece;
-    }
-
-    set piece(value: Piece) {
-        this._piece = value;
-    }
-    private rank
-    private file
-
-    private _piece:Piece
-
-    constructor(rank:Rank, file:File) {
-        super()
-        this.rank = rank
-        this.file = file
-    }
-
-    getText() {
-        return this.rank + this.file
-    }
-}
-
-// ======== MODEL =========
-
-export type MoveDto = {
-    color:String,
-    from:Square,
-    to:Square,
-    flags:String,
-    piece:Piece,
-    san:String
-}
+import {MoveDto, Square} from "./elements";
 
 export class Model {
     get squares(): Square[] {
@@ -59,9 +10,10 @@ export class Model {
 
     private createSquares():Square[] {
         let squares:Square[]
-        Object.keys(Rank).map(rank => {
-            Object.keys(File).map(file => {
-                let square = new Square(Rank[rank], File[file]);
+        const EIGHT_RANKS_OR_FILES = [0,1,2,3,4,5,6,7];
+        EIGHT_RANKS_OR_FILES.map(rank => {
+            EIGHT_RANKS_OR_FILES.map(file => {
+                let square = new Square(rank, file);
                 squares.push(square)
             })
         })
