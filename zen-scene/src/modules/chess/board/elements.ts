@@ -7,7 +7,11 @@ export enum PieceValue {
 export enum PieceColor {
     WHITE = "white", BLACK="black"
 }
+
 export class Piece {
+    get color(): PieceColor {
+        return this._color;
+    }
     get value(): PieceValue {
         return this._value;
     }
@@ -16,10 +20,13 @@ export class Piece {
         return this._startingSquare;
     }
     private _value:PieceValue
+    private _color:PieceColor
     private _startingSquare:Square
 
-    constructor(value:PieceValue) {
+    constructor(value:PieceValue, color:PieceColor, square:Square) {
         this._value = value
+        this._color = color
+        this._startingSquare = square
     }
 }
 
@@ -27,18 +34,18 @@ export class Piece {
 
 export class Square {
 
-    get piece(): PieceValue {
+    get piece(): Piece {
         return this._piece;
     }
 
-    set piece(value: PieceValue) {
+    set piece(value: Piece) {
         this._piece = value;
     }
 
     private rank:number
     private file:number
 
-    private _piece:PieceValue
+    private _piece:Piece
 
     constructor(rank:number, file:number) {
         if (rank < 0 || rank > 8) {

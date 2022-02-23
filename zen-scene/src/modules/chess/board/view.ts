@@ -1,19 +1,26 @@
 import {Piece, PieceValue, Square} from "./elements";
 import {Entity} from "decentraland-ecs";
+import {Common} from "./common";
 
 export class BoardView extends Entity {
 
     squareViews: SquareView[]
     pieceViews: PieceView[]
 
-    constructor(squares:Square[], pieces:Piece[]) {
+    constructor() {
         super();
+        let squares = Common.createSquares();
         for (let square of squares) {
             this.squareViews.push(new SquareView(square))
         }
+        let pieces = Common.createPieces();
         for (let piece of pieces) {
             this.pieceViews.push(new PieceView(piece))
         }
+    }
+
+    resetPieces() {
+
     }
 
     getSquareView(targetSquare: Square): SquareView {
@@ -52,6 +59,7 @@ export class PieceView extends Entity {
         let distance = Vector3.Forward().scale(0.1)
         transform.translate(distance)
     }
+
 }
 
 export class SquareView extends Entity {
@@ -87,7 +95,7 @@ export class View {
 
     private boardView: BoardView
 
-    constructor(boardView: BoardView) {
+    constructor(boardView:BoardView) {
         this.boardView = boardView
     }
 
@@ -115,6 +123,11 @@ export class View {
 
     viewCancelSelect() {
         // todo - do this later
+    }
+
+    removePiece(piece:Piece) {
+        let pieceView:Entity = this.boardView.getPieceView(piece);
+        engine.removeEntity(pieceView);
     }
 
 }

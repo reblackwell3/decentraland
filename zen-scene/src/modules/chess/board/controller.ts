@@ -1,8 +1,9 @@
 // INPUT
 
 // Instance the input object
-import {Model, MoveDto, Square} from "./model";
-import {blueMaterial, BoardView, View} from "./view";
+import {Model} from "./model";
+import {View} from "./view";
+import {Square} from "./elements";
 
 const input = Input.instance
 

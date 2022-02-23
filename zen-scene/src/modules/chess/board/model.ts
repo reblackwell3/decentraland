@@ -1,23 +1,17 @@
 import {Chess} from "chess.js";
 import {MoveDto, Square} from "./elements";
+import {Common} from "./common";
 
 export class Model {
     get squares(): Square[] {
         return this._squares;
     }
-    private chessEngine = new Chess();
-    private _squares = this.createSquares()
+    private chessEngine
+    private _squares:Square[]
 
-    private createSquares():Square[] {
-        let squares:Square[]
-        const EIGHT_RANKS_OR_FILES = [0,1,2,3,4,5,6,7];
-        EIGHT_RANKS_OR_FILES.map(rank => {
-            EIGHT_RANKS_OR_FILES.map(file => {
-                let square = new Square(rank, file);
-                squares.push(square)
-            })
-        })
-        return squares
+    constructor() {
+        this.chessEngine = new Chess();
+        this._squares = Common.createSquares();
     }
 
     select(square:Square): Square[] {
