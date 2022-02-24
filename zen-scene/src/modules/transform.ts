@@ -1,3 +1,9 @@
+const SCENE_TRANS = new Transform({
+    position: new Vector3(0, 0, 0),
+    rotation: new Quaternion(0, 0, 0, 1),
+    scale: new Vector3(1, 1, 1)
+})
+
 const GST_3_TRANS = new Transform({
     position: new Vector3(13.5, 0, 10),
     rotation: new Quaternion(0, 0, 0, 1),

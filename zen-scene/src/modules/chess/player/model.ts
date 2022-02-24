@@ -15,6 +15,6 @@ export class PlayerModel {
 
     constructor(color:PieceColor) {
         this._color = color
-        this._hasTurn = this._color == PieceColor.WHITE ? true : false
+        this._hasTurn = this._color == PieceColor.WHITE
     }
 }

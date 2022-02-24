@@ -1,17 +1,18 @@
-import {BoardView} from "./modules/chess/board/view";
+import {createLandscape} from "./modules/landscape";
+import {GS_TREE_SHAPE} from "./modules/shape";
 
 export const sceneMessageBus = new MessageBus()
-
-const normalTransform = new Transform({
-    position: new Vector3(0, 0, 0),
-    rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1)
-})
 
 //BUILD SCENE
 
 const _scene = new Entity('_scene')
 engine.addEntity(_scene)
-_scene.addComponentOrReplace(normalTransform)
+_scene.addComponentOrReplace(SCENE_TRANS)
 
-// const _boardView = new BoardView();
+// createLandscape(_scene);
+
+const tree = new Entity('tree')
+engine.addEntity(tree)
+tree.addComponent(GS_TREE_SHAPE)
+tree.addComponent(GST_TRANS)
+tree.setParent(_scene)
