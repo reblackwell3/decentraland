@@ -43,7 +43,6 @@ export function createLandscape(_scene: Entity) {
     }))
     beachRock.setParent(_scene)
 
-
     const pond = new Entity('pond');
     pond.addComponent(new NormalGLTFShape("2950ca19-cb51-422b-b80e-fc0765d6cf4b/Pond_01/Pond_01.glb"))
     pond.addComponent(new Transform({
