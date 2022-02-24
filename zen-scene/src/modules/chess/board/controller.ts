@@ -1,10 +1,8 @@
-// INPUT
-
-// Instance the input object
 import {BoardModel} from "./model";
 import {BoardView} from "./view";
 import {Square} from "./elements";
 
+// Instance the input object
 const input = Input.instance
 
 export class BoardController {

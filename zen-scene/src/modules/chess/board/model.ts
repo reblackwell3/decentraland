@@ -1,6 +1,7 @@
 import {Chess} from "chess.js";
 import {MoveDto, Square} from "./elements";
 import {Common} from "./common";
+import {log} from "decentraland-ecs";
 
 export class BoardModel {
     get squares(): Square[] {
@@ -10,6 +11,7 @@ export class BoardModel {
     private _squares:Square[]
 
     constructor() {
+        log("CREATING THE BOARD MODEL")
         this.chessEngine = new Chess();
         this._squares = Common.createSquares();
     }

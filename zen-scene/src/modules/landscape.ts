@@ -7,6 +7,7 @@ export function createEntity(
     name: string,
     shape: Shape,
     trans: Transform) {
+    log("CREATING ENTITY: " + name)
     let e = new Entity(name);
     engine.addEntity(e)
     e.addComponent(trans)
@@ -16,6 +17,7 @@ export function createEntity(
 }
 
 export function createLandscape(_scene:Entity) {
+    log("CREATING LANDSCAPE")
     const greenSycamoreTree3 = createEntity(
         _scene,
         'greenSycamoreTree3',
