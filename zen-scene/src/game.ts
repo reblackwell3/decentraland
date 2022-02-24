@@ -1,5 +1,4 @@
-import {Player} from "./player";
-// import {chessPieces} from "./modules/chess/board/chess-engine";
+import {BoardView} from "./modules/chess/board/view";
 
 export const sceneMessageBus = new MessageBus()
 
@@ -14,3 +13,5 @@ const normalTransform = new Transform({
 const _scene = new Entity('_scene')
 engine.addEntity(_scene)
 _scene.addComponentOrReplace(normalTransform)
+
+// const _boardView = new BoardView();

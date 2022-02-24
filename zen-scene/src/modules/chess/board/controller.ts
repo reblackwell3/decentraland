@@ -1,8 +1,8 @@
 // INPUT
 
 // Instance the input object
-import {Model} from "./model";
-import {View} from "./view";
+import {BoardModel} from "./model";
+import {BoardView} from "./view";
 import {Square} from "./elements";
 
 const input = Input.instance
@@ -15,35 +15,35 @@ const input = Input.instance
 //     }
 // }
 
-export class Controller {
-    private model:Model
-    private view:View
+export class BoardController {
+    private boardModel:BoardModel
+    private boardView:BoardView
 
     private _fromSquare:Square
 
-    constructor(model:Model, view:View) {
-        this.model = model
-        this.view = view
+    constructor(model:BoardModel, view:BoardView) {
+        this.boardModel = model
+        this.boardView = view
     }
 
     // this will only be setup on valid from squares
     select(fromSquare:Square) {
         this._fromSquare = fromSquare
-        let toSquares = this.model.select(fromSquare);
+        let toSquares = this.boardModel.select(fromSquare);
         if (toSquares != null) {
-            this.view.viewSelect(fromSquare, toSquares);
+            this.boardView.viewSelect(fromSquare, toSquares);
         } else {
-            this.view.viewNoMoves(fromSquare)
+            this.boardView.viewNoMoves(fromSquare)
             this._fromSquare = null
         }
     }
 
     move(fromSquare: Square, toSquare: Square) {
-        let moveDto = this.model.move(fromSquare, toSquare);
+        let moveDto = this.boardModel.move(fromSquare, toSquare);
         if (moveDto != null) {
-            this.view.viewMove(fromSquare, toSquare);
+            this.boardView.viewMove(fromSquare, toSquare);
         } else {
-            this.view.viewCancelSelect();
+            this.boardView.viewCancelSelect();
         }
         this._fromSquare = null;
     }

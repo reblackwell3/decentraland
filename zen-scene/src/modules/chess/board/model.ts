@@ -2,7 +2,7 @@ import {Chess} from "chess.js";
 import {MoveDto, Square} from "./elements";
 import {Common} from "./common";
 
-export class Model {
+export class BoardModel {
     get squares(): Square[] {
         return this._squares;
     }
