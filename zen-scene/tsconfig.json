@@ -9,9 +9,6 @@
       ],
       "@dcl/ui-scene-utils": [
         "node_modules/@dcl/ui-scene-utils/dist/index.d.ts"
-      ],
-      "chess.js": [
-        "node_modules/chess.js/chess.js"
       ]
     },
     "baseUrl": "."
