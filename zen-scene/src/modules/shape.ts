@@ -6,3 +6,5 @@ export class NormalGLTFShape extends GLTFShape {
         this.withCollisions = true
     }
 }
+
+export const BLACK_WHITE_BOARD_SHAPE = new NormalGLTFShape("models/black-white-board.glb");

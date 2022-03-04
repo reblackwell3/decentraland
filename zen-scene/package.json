@@ -11,12 +11,13 @@
     "ecs:install-next": "npm install --save-dev decentraland-ecs@next"
   },
   "devDependencies": {
-    "@dcl/ecs-scene-utils": "^1.7.5",
     "@dcl/kernel": "https://sdk-team-cdn.decentraland.org/@dcl/kernel/branch/feat/skip-avatar-selection-in-preview/dcl-kernel-1.0.0-1183047959.commit-d5accd1.tgz",
-    "@dcl/ui-scene-utils": "^1.7.1",
     "decentraland-ecs": "^6.9.1"
   },
   "dependencies": {
+    "@dcl/ecs-scene-utils": "^1.7.5",
+    "@dcl/ui-scene-utils": "^1.7.1",
+    "chess.ts": "^0.16.2",
     "decentraland-builder-scripts": "latest"
   },
   "bundleDependencies": [

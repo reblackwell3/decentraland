@@ -1,4 +1,7 @@
 import {createLandscape} from "./modules/landscape";
+import {BoardController} from "./modules/chess/board/controller";
+import {BoardModel} from "./modules/chess/board/model";
+import {BoardView} from "./modules/chess/board/view";
 
 export const sceneMessageBus = new MessageBus()
 
@@ -16,3 +19,7 @@ let transform = new Transform({
 _scene.addComponentOrReplace(transform)
 
 createLandscape(_scene);
+
+let boardModel = new BoardModel();
+let boardView = new BoardView(transform);
+let boardController:BoardController = new BoardController(boardModel, boardView)
